@@ -15,6 +15,7 @@ import {
 
 import HomeScreen from './HomeScreen'
 import ProfileScreen from './ProfileScreen'
+import UpdateScreen from './UpdateScreen'
 import {
     createStackNavigator,
 } from 'react-navigation';
@@ -22,6 +23,7 @@ import {
 const App = createStackNavigator({
     Home: { screen: HomeScreen },
     Profile: { screen: ProfileScreen },
+    Update: {screen: UpdateScreen},
 });
 
 export default App;
