@@ -81,6 +81,10 @@ class UpdateScreen extends React.Component {
     ],
     }
 }
+updateOutage() {
+        console.log("onclick of save update")
+    console.log(this.state.ZipCode)
+}
 
 render()
 {
@@ -101,7 +105,8 @@ render()
             />*/}
             <Picker
                 selectedValue={this.state.OutageType}
-                style={{ height: 50, width: 150 }}>
+                style={{ height: 50, width: 150 }}
+                onValueChange={(itemValue, itemIndex) => this.setState({OutageType: itemValue})}>
                 <Picker.Item label="Planned" value="Planned" />
                 <Picker.Item label="Not Planned" value="NotPlanned" />
             </Picker>
@@ -110,7 +115,7 @@ render()
                 style={{height: 40, width:150}}
                 placeholder="Please enter the city"
                 value = {this.state.City}
-                onChangeText={(text) => this.setState({City})}
+                onChangeText={(text) => this.setState({City:text})}
             />
             <Text style={styles.item}>Location ZipCode: </Text>
             <TextInput
@@ -156,11 +161,28 @@ render()
             />
             <Text style={styles.item}>Crew Status: </Text>
             <Picker
-                selectedValue={this.state.OutageType}
-                style={{ height: 50, width: 150 }}>
+                selectedValue={this.state.Crew_Status}
+                style={{ height: 50, width: 150 }}
+                onValueChange={(itemValue, itemIndex) => this.setState({Crew_Status: itemValue})}>
                 <Picker.Item label="Started" value="Started" />
                 <Picker.Item label="Not Started" value="NotStarted" />
             </Picker>
+            <Button
+                //  key = {i}
+                title={"Update"}
+                //color="#841584"
+                buttonStyle={{
+                    //backgroundColor: "rgba(92, 99,216, 1)",
+                    backgroundColor: 'yellow',
+                    //width: 300,
+                    height: 30,
+                    //borderColor: "black",
+                    borderWidth: 5,
+                    borderRadius: 5
+                }}
+                onPress={() =>{this.updateOutage()}
+                }
+            />
         </View>
         //   })
 
