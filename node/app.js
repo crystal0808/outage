@@ -8,7 +8,19 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+const http = require('http');
+const hostname = '127.0.0.1';
+const port = 3000;
 
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.parse('{"ID":"1","USERNAME":"mike","PASSWORD":"password","EMAIL":"mike@sce.com","PHONE":"1-800-111-2222","CREATE_TIME":null,"EXPIRE_TIME":null}'));
+});
+
+server.listen(port, hostname, () => {
+    console.log(`服务器运行在 http://${hostname}:${port}/`);
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

@@ -84,6 +84,20 @@ class UpdateScreen extends React.Component {
 updateOutage() {
         console.log("onclick of save update")
     console.log(this.state.ZipCode)
+    fetch('http://127.0.0.1:3000/'//, {
+       // method: 'GET',
+       // headers: {
+       //     Accept: 'application/json',
+       //     'Content-Type': 'application/json',
+       // },
+    //}
+    ).then((response)=>response.json())
+        .then ((responseJson) =>
+        {
+            console.log(responseJson);
+        }).catch(function(err) {
+        console.log(err);
+        });
 }
 
 render()
