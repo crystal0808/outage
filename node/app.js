@@ -13,9 +13,19 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.parse('{"ID":"1","USERNAME":"mike","PASSWORD":"password","EMAIL":"mike@sce.com","PHONE":"1-800-111-2222","CREATE_TIME":null,"EXPIRE_TIME":null}'));
+    var json = JSON.stringify({
+        ID:1,
+        USERNAME:"mike",
+        PASSWORD:"password",
+        //EMAIL:"mike@sce.com",
+        //PHONE:1-800-111-2222,
+        CREATE_TIME:null,
+        EXPIRE_TIME:null
+    });
+    //res.statusCode = 200;
+    //res.setHeader('Content-Type', 'application/json');
+    res.writeHeader(200, {"Content-Type":"application/json"});
+    res.write(json);
 });
 
 server.listen(port, hostname, () => {
