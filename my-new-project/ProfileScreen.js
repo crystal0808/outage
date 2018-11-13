@@ -67,6 +67,23 @@ class ProfileScreen extends React.Component {
 
         );
     }
+    componentDidMount() {
+        console.log("didmont")
+        fetch('http://127.0.0.1:3000/outageList'//, {
+            // method: 'GET',
+            // headers: {
+            //     Accept: 'application/json',
+            //     'Content-Type': 'application/json',
+            // },
+            //}
+        ).then((response)=>response.json())
+            .then ((responseJson) =>
+            {
+                console.log(responseJson);
+            }).catch(function(err) {
+            console.log(err);
+        });
+    }
 }
 
 const styles = StyleSheet.create({

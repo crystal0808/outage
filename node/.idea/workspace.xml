@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47bd41b2-a037-4088-9d08-c4e4a9cdcebd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../my-new-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../my-new-project/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/ProfileScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../my-new-project/UpdateScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/UpdateScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -54,7 +56,7 @@
     <session id="-691548271">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.opened" value="2" />
@@ -92,8 +94,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="162" column="32" lean-forward="true" selection-start-line="162" selection-start-column="32" selection-end-line="162" selection-end-column="32" />
+            <state relative-caret-position="405">
+              <caret line="168" column="27" lean-forward="true" selection-start-line="168" selection-start-column="27" selection-end-line="168" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -210,7 +212,7 @@
     <property name="SearchEverywhereHistoryKey" value="connectString&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.13.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../react-antd-demo-master" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -243,12 +245,12 @@
       <workItem from="1541830510547" duration="2598000" />
       <workItem from="1542003977562" duration="119000" />
       <workItem from="1542004160516" duration="3174000" />
-      <workItem from="1542063702391" duration="11520000" />
+      <workItem from="1542063702391" duration="14974000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19906000" />
+    <option name="totallyTimeSpent" value="23360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,8 +328,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="162" column="32" lean-forward="true" selection-start-line="162" selection-start-column="32" selection-end-line="162" selection-end-column="32" />
+        <state relative-caret-position="405">
+          <caret line="168" column="27" lean-forward="true" selection-start-line="168" selection-start-column="27" selection-end-line="168" selection-end-column="27" />
         </state>
       </provider>
     </entry>
