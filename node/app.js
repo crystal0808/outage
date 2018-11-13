@@ -108,24 +108,24 @@ var oracledb = require('oracledb');
 var dbresult = '';
 
 //添加的新用户数据
-var user = [{
-        "username": "stan",
-        "password": "password4",
-        "email": "stan@lee.com",
-        "id": 6,
-        "phone": "1-800-111-8888",
-        "CREATE_TIME": null,
+var user = {
+    "id": "6",
+    "username": "stan",
+    "password": "password4",
+    "email": "stan@lee.com",
+    "phone": "1-800-111-8888",
+    "CREATE_TIME": null,
     "EXPIRE_TIME": null
-},
-   /* {
-        "username": "coco",
-        "password": "password4",
-        "email": "coco@lee.com",
-        "id": 7,
-        "phone": "1-800-111-8888",
-        "CREATE_TIME": null,
-        "EXPIRE_TIME": null
-    }*/]
+}
+/* {
+     "username": "coco",
+     "password": "password4",
+     "email": "coco@lee.com",
+     "id": 7,
+     "phone": "1-800-111-8888",
+     "CREATE_TIME": null,
+     "EXPIRE_TIME": null
+ }*/
 
 
 oracledb.getConnection(
@@ -141,58 +141,64 @@ oracledb.getConnection(
             return;
         }
         let json = JSON.stringify(user);
-/*
-        connection.execute("insert into crew values(:ID,:USERNAME,:password,:EMAIL,:phone,:CREATE_TIME,:EXPIRE_TIME)",
-            ['3', 'lily', '', '', '','',''], { autoCommit: true },function (err, result) {
-            if (err) {
-                console.error(err.message);
-                doRelease(connection);
-                return;
-            }
-*/
-var values = [];
-for (var i = 0; i < user.length;i++) {
-    values.push([user[i].id, user[i].username,user[i].password, user[i].email,user[i].phone, user[i].CREATE_TIME,user[i].EXPIRE_TIME])
-}
-console.log(values)
-        connection.execute("insert  into crew values(:ID,:USERNAME,:password,:EMAIL,:phone,:CREATE_TIME,:EXPIRE_TIME)",
-            [values], { autoCommit: true },function (err, result) {
+        /*
+                connection.execute("insert into crew values(:ID,:USERNAME,:password,:EMAIL,:phone,:CREATE_TIME,:EXPIRE_TIME)",
+                    ['3', 'lily', '', '', '','',''], { autoCommit: true },function (err, result) {
+                    if (err) {
+                        console.error(err.message);
+                        doRelease(connection);
+                        return;
+                    }
+        */
+        var values = [];
+
+        values.push(user.id, user.username, user.password, user.email, user.phone, user.CREATE_TIME, user.EXPIRE_TIME)
+
+        console.log(values)
+
+        /*            console.log(connection.oracleServerVersion)
+        only works for oracle 12 or later
+                var s = JSON.stringify(user);
+                var b = Buffer.from(s, 'utf8');
+                console.log(s)*/
+        connection.execute("insert into crew values(:id,:username,:password,:email,:phone,:CREATE_TIME,:EXPIRE_TIME)",
+            values, {autoCommit: true}, function (err, result) {
                 if (err) {
                     console.error(err.message);
                     doRelease(connection);
                     return;
                 }
 
-            connection.execute("select * from crew t", [], function (err, result) {
-                if (err) {
-                    console.error(err.message);
-                    doRelease(connection);
-                    return;
-                }
-                console.log("aaaddddjjj")
-                //    console.log(result.metaData);
-                dbresult = JSON.stringify(result.rows.map((v) => {
-                    return result.metaData.reduce((p, key, i) => {
-                        p[key.name] = v[i];
-                        return p;
-                    }, {})
-                }));
-                //      console.log(dbresult)
-                //       console.log("hhahaha");
+                connection.execute("select * from crew t", [], function (err, result) {
+                    if (err) {
+                        console.error(err.message);
+                        doRelease(connection);
+                        return;
+                    }
+                    console.log("aaaddddjjj")
+                    //    console.log(result.metaData);
+                    dbresult = JSON.stringify(result.rows.map((v) => {
+                        return result.metaData.reduce((p, key, i) => {
+                            p[key.name] = v[i];
+                            return p;
+                        }, {})
+                    }));
+                    //      console.log(dbresult)
+                    //       console.log("hhahaha");
 
-                /*            console.log(JSON.stringify(result.rows.map((v)=>
-                            {
-                                return result.metaData.reduce((p, key, i)=>
+                    /*            console.log(JSON.stringify(result.rows.map((v)=>
                                 {
-                                    p[key.name] = v[i];
-                                    return p;
-                                }, {})
-                            })));*/
-                doRelease(connection);
-            });
-        })
+                                    return result.metaData.reduce((p, key, i)=>
+                                    {
+                                        p[key.name] = v[i];
+                                        return p;
+                                    }, {})
+                                })));*/
+                    doRelease(connection);
+                });
+            })
     });
-app.get('/outage', function (req, res) {
+app.get('/outageList', function (req, res) {
     console.log("outage")
     console.log(dbresult);
     res.end(dbresult);
@@ -200,9 +206,7 @@ app.get('/outage', function (req, res) {
 
 // Note: connections should always be released when not needed
 function doRelease(connection) {
-    console.log("This is $$$ proof.");
     connection.close(console.info);
-    console.log("This is *** proof.");
 }
 
 module.exports = app;
