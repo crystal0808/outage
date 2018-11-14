@@ -69,7 +69,7 @@ class ProfileScreen extends React.Component {
     }
     componentDidMount() {
         console.log("didmont")
-        fetch('http://127.0.0.1:3000/outageList'//, {
+        fetch('http://192.168.43.110:3000/outageList'//, {
             // method: 'GET',
             // headers: {
             //     Accept: 'application/json',
@@ -79,6 +79,7 @@ class ProfileScreen extends React.Component {
         ).then((response)=>response.json())
             .then ((responseJson) =>
             {
+                console.log("this is it!")
                 console.log(responseJson);
             }).catch(function(err) {
             console.log(err);

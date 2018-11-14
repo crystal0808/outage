@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/../my-new-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../my-new-project/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/ProfileScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../my-new-project/UpdateScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/UpdateScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,9 +58,9 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="2" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.38" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -94,8 +95,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="168" column="27" lean-forward="true" selection-start-line="168" selection-start-column="27" selection-end-line="168" selection-end-column="27" />
+            <state relative-caret-position="-1190">
+              <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -103,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/users.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="10" column="31" lean-forward="true" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="170">
+              <caret line="10" column="31" selection-end-line="19" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -112,7 +113,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/http-errors/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1107">
+            <state relative-caret-position="697">
               <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
             </state>
           </provider>
@@ -121,7 +122,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/oracledb/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
+            <state relative-caret-position="187">
               <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
             </state>
           </provider>
@@ -130,7 +131,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/oracledb/lib/oracledb.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3969">
+            <state relative-caret-position="2499">
               <caret line="147" column="29" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="29" />
             </state>
           </provider>
@@ -189,7 +190,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -206,6 +206,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,11 +247,12 @@
       <workItem from="1542003977562" duration="119000" />
       <workItem from="1542004160516" duration="3174000" />
       <workItem from="1542063702391" duration="14974000" />
+      <workItem from="1542175085110" duration="1501000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23360000" />
+    <option name="totallyTimeSpent" value="24861000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -262,10 +264,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1046" extended-state="6" />
+    <frame x="1909" y="-11" width="1702" height="1072" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2140625" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24464285" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -279,7 +281,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31704545" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.307947" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -297,21 +299,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/http-errors/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1107">
+        <state relative-caret-position="697">
           <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/oracledb/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="187">
           <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/oracledb/lib/oracledb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3969">
+        <state relative-caret-position="2499">
           <caret line="147" column="29" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="29" />
         </state>
       </provider>
@@ -321,15 +323,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/users.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="31" lean-forward="true" selection-end-line="19" selection-end-column="1" />
+        <state relative-caret-position="170">
+          <caret line="10" column="31" selection-end-line="19" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="168" column="27" lean-forward="true" selection-start-line="168" selection-start-column="27" selection-end-line="168" selection-end-column="27" />
+        <state relative-caret-position="-1190">
+          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>
