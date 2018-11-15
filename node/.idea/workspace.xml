@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="47bd41b2-a037-4088-9d08-c4e4a9cdcebd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../my-new-project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../my-new-project/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/ProfileScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../my-new-project/UpdateScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../my-new-project/UpdateScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,7 +59,7 @@
     <session id="-691548271">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.opened" value="3" />
@@ -65,12 +67,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="961" />
+          <entry key="js" value="1059" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="961" />
+          <entry key="JavaScript" value="1059" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -95,8 +97,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1190">
-              <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+            <state relative-caret-position="221">
+              <caret line="64" column="36" lean-forward="true" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -149,6 +151,11 @@
       <find>server</find>
       <find>app.get</find>
       <find>dbresult</find>
+      <find>req</find>
+      <find>createserver</find>
+      <find>http</find>
+      <find>querystring</find>
+      <find>request</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,7 +185,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-11" />
     <option name="y" value="-11" />
     <option name="width" value="1942" />
@@ -247,12 +254,12 @@
       <workItem from="1542003977562" duration="119000" />
       <workItem from="1542004160516" duration="3174000" />
       <workItem from="1542063702391" duration="14974000" />
-      <workItem from="1542175085110" duration="1501000" />
+      <workItem from="1542175085110" duration="6133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24861000" />
+    <option name="totallyTimeSpent" value="29493000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -264,10 +271,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1909" y="-11" width="1702" height="1072" extended-state="7" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="1942" height="1046" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24464285" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2140625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -281,7 +287,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.307947" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31704545" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -330,8 +336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1190">
-          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        <state relative-caret-position="221">
+          <caret line="64" column="36" lean-forward="true" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
         </state>
       </provider>
     </entry>

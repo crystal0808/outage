@@ -81,10 +81,30 @@ class UpdateScreen extends React.Component {
     ],
     }
 }
-updateOutage() {
+
+    postData(url, data) {
+        // Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify({key: "Outage #: 123456, Location City: Duarte"}), // must match 'Content-Type' header
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, cors, *same-origin
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // *client, no-referrer
+        })
+            .then(response => response.json()) // parses response to JSON
+    }
+
+
+    updateOutage() {
         console.log("onclick of save update")
     console.log(this.state.ZipCode)
-    fetch('http://192.168.43.110:3000/'//, {
+    /*fetch('http://192.168.43.110:3000/'//, {
        // method: 'GET',
        // headers: {
        //     Accept: 'application/json',
@@ -97,7 +117,11 @@ updateOutage() {
             console.log(responseJson);
         }).catch(function(err) {
         console.log(err);
-        });
+        });*/
+    this.postData('http://192.168.43.110:3000', {answer: 42})
+        .then(data => console.log(data)) // JSON from `response.json()` call
+        .catch(error => console.error(error))
+
 }
 
 render()

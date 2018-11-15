@@ -9,32 +9,34 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 var fs = require("fs");
-
+var util = require('util');
 
 const http = require('http');
 const hostname = '192.168.43.110';
 const port = 3000;
-/*
-const server = http.createServer((req, res) => {
-    var json = JSON.stringify({
-        ID:1,
-        USERNAME:"mike",
-        PASSWORD:"password",
-        //EMAIL:"mike@sce.com",
-        //PHONE:1-800-111-2222,
-        CREATE_TIME:null,
-        EXPIRE_TIME:null
-    });
-    //res.statusCode = 200;
-    //res.setHeader('Content-Type', 'application/json');
-    res.writeHeader(200, {"Content-Type":"application/json"});
-    res.write(json);
-});
 
-server.listen(port, hostname, () => {
-    console.log(`服务器运行在 http://${hostname}:${port}/`);
-});
-*/
+
+    /*
+    const server = http.createServer((req, res) => {
+        var json = JSON.stringify({
+            ID:1,
+            USERNAME:"mike",
+            PASSWORD:"password",
+            //EMAIL:"mike@sce.com",
+            //PHONE:1-800-111-2222,
+            CREATE_TIME:null,
+            EXPIRE_TIME:null
+        });
+        //res.statusCode = 200;
+        //res.setHeader('Content-Type', 'application/json');
+        res.writeHeader(200, {"Content-Type":"application/json"});
+        res.write(json);
+    });
+
+    server.listen(port, hostname, () => {
+        console.log(`服务器运行在 http://${hostname}:${port}/`);
+    });
+    */
 app.get('/', function (req, res) {
     res.send('Hello World');
 })
@@ -45,6 +47,34 @@ var server = app.listen(port, hostname, function () {
 
     console.log("应用实例，访问地址为 http://%s:%s", host1, port1)
 })
+
+app.post('/', function(req, res) {
+    console.log("receive post");
+  //  console.log(req.query.id);
+  //  console.log(req.body.name);
+ //   console.log(req.body.tel);\
+    var data = JSON.stringify({
+        "user1": {
+            "name": "mahesh",
+            "password": "password1",
+            "profession": "teacher",
+            "id": 1
+        },
+        "user2": {
+            "name": "suresh",
+            "password": "password2",
+            "profession": "librarian",
+            "id": 2
+        },
+        "user3": {
+            "name": "ramesh",
+            "password": "password3",
+            "profession": "clerk",
+            "id": 3
+        }
+    });
+    res.send(data);
+});
 app.get('/listUsers', function (req, res) {
     /*fs.readFile("c:/code/users.json", 'utf8', function (err, data) {
         console.log( data );
