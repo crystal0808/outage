@@ -15,6 +15,8 @@ import {
     Picker
 } from 'react-native';
 import {Button} from 'react-native-elements';
+const url = 'http://192.168.43.110:3000';
+//const url = 'http://172.20.10.6:3000';
 
 class UpdateScreen extends React.Component {
     static navigationOptions = {
@@ -24,7 +26,8 @@ class UpdateScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            OutageType:'test',
+            OutageId : this.props.OutageId,
+            OutageType:'',
             City:'',
             ZipCode:'',
             Address:'',
@@ -33,59 +36,17 @@ class UpdateScreen extends React.Component {
             Estimated_Restoration_Time:'',
             Reason:'',
             Crew_Status:'',
-            outage: [{
-                key: "OutageType",
-                desc: "Outage Type",
-                value: "Planned"
-            },
-                {
-                    key: "City",
-                    desc: "Location City",
-                    value: "Glendora"
-                },
-            {
-                key: "ZipCode",
-                desc: "Location ZipCode",
-                value: "91741"
-            },
-            {
-                key: "Address",
-                desc: "Address",
-                value: "Hotel Transylvania"
-            },
-            {
-                    key: "CustomersImpacted",
-                    desc: "Customers Impacted",
-                    value: "100"
-                },
-                {
-                    key: "Start_Date_Time",
-                    desc: "Outage Start Date Time",
-                    value: "11/1/2018 9:45 AM"
-                },
-                {
-                    key: "Estimated_Restoration_Time",
-                    desc: "Estimated Restoration Time",
-                    value: "11/1/2018 3:30 PM"
-                },
-                {
-                    key: "Reason",
-                    desc: "Reason",
-                    value: "Wire Down"
-                },
-                {
-                    key: "Crew_Status",
-                    desc: "Crew Status",
-                    value: "Not Started"
-                },
-    ],
+            outage: [],
     }
+    console.log(this.props.navigation.getParam("OutageId", ''))
 }
 
     postData(url, data) {
         // Default options are marked with *
+        console.log("postData")
+        console.log(data)
         return fetch(url, {
-            body: JSON.stringify({key: "Outage #: 123456, Location City: Duarte"}), // must match 'Content-Type' header
+            body: JSON.stringify(data), // must match 'Content-Type' header
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, same-origin, *omit
             headers: {
@@ -103,7 +64,19 @@ class UpdateScreen extends React.Component {
 
     updateOutage() {
         console.log("onclick of save update")
-    console.log(this.state.ZipCode)
+  //  console.log(this.state)
+        var outage = {
+            "Address": this.state.Address,
+             "City": this.state.City,
+             "Crew_Status": this.state.Crew_Status,
+             "CustomersImpacted": this.state.CustomersImpacted,
+            "Estimated_Restoration_Time": this.state.Estimated_Restoration_Time,
+            "OutageType": this.state.OutageType,
+             "Reason": this.state.Reason,
+             "Start_Date_Time": this.state.Start_Date_Time,
+            "ZipCode": this.state.ZipCode,
+
+        }
     /*fetch('http://192.168.43.110:3000/'//, {
        // method: 'GET',
        // headers: {
@@ -118,7 +91,7 @@ class UpdateScreen extends React.Component {
         }).catch(function(err) {
         console.log(err);
         });*/
-    this.postData('http://192.168.43.110:3000', {answer: 42})
+    this.postData(url, {outage: outage})
         .then(data => console.log(data)) // JSON from `response.json()` call
         .catch(error => console.error(error))
 
@@ -211,7 +184,7 @@ render()
                 //color="#841584"
                 buttonStyle={{
                     //backgroundColor: "rgba(92, 99,216, 1)",
-                    backgroundColor: 'yellow',
+                    backgroundColor: 'blue',
                     //width: 300,
                     height: 30,
                     //borderColor: "black",

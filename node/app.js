@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -13,6 +14,7 @@ var util = require('util');
 
 const http = require('http');
 const hostname = '192.168.43.110';
+//const hostname = '172.20.10.6';
 const port = 3000;
 
 
@@ -47,10 +49,12 @@ var server = app.listen(port, hostname, function () {
 
     console.log("应用实例，访问地址为 http://%s:%s", host1, port1)
 })
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.post('/', function(req, res) {
     console.log("receive post");
-  //  console.log(req.query.id);
+    console.log(req.body);
   //  console.log(req.body.name);
  //   console.log(req.body.tel);\
     var data = JSON.stringify({
@@ -157,78 +161,81 @@ var user = {
      "EXPIRE_TIME": null
  }*/
 
+function getConnection(param) {
+    oracledb.getConnection(
+        {
+            user: "system",
+            password: "admin",
+            connectString: "localhost:1521/xe"
+        },
+        function (err, connection) {
+            console.log("This is proof.");
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            let json = JSON.stringify(user);
+            /*
+                    connection.execute("insert into crew values(:ID,:USERNAME,:password,:EMAIL,:phone,:CREATE_TIME,:EXPIRE_TIME)",
+                        ['3', 'lily', '', '', '','',''], { autoCommit: true },function (err, result) {
+                        if (err) {
+                            console.error(err.message);
+                            doRelease(connection);
+                            return;
+                        }
+            */
+            var values = [];
 
-oracledb.getConnection(
-    {
-        user: "system",
-        password: "admin",
-        connectString: "localhost:1521/xe"
-    },
-    function (err, connection) {
-        console.log("This is proof.");
-        if (err) {
-            console.error(err.message);
-            return;
-        }
-        let json = JSON.stringify(user);
-        /*
-                connection.execute("insert into crew values(:ID,:USERNAME,:password,:EMAIL,:phone,:CREATE_TIME,:EXPIRE_TIME)",
-                    ['3', 'lily', '', '', '','',''], { autoCommit: true },function (err, result) {
+            values.push(user.id, user.username, user.password, user.email, user.phone, user.CREATE_TIME, user.EXPIRE_TIME)
+
+            console.log(values)
+
+            /*            console.log(connection.oracleServerVersion)
+            only works for oracle 12 or later
+                    var s = JSON.stringify(user);
+                    var b = Buffer.from(s, 'utf8');
+                    console.log(s)*/
+            connection.execute("insert into crew values(:id,:username,:password,:email,:phone,:CREATE_TIME,:EXPIRE_TIME)",
+                values, {autoCommit: true}, function (err, result) {
                     if (err) {
                         console.error(err.message);
                         doRelease(connection);
                         return;
                     }
-        */
-        var values = [];
 
-        values.push(user.id, user.username, user.password, user.email, user.phone, user.CREATE_TIME, user.EXPIRE_TIME)
+                    connection.execute("select * from outage t", [], function (err, result) {
+                        if (err) {
+                            console.error(err.message);
+                            doRelease(connection);
+                            return;
+                        }
+                        console.log("aaaddddjjj")
+                        console.log(result);
+                        dbresult = JSON.stringify(result.rows.map((v) => {
+                            return result.metaData.reduce((p, key, i) => {
+                                p[key.name] = v[i];
+                                return p;
+                            }, {})
+                        }));
+                        console.log(dbresult)
+                        //       console.log("hhahaha");
 
-        console.log(values)
-
-        /*            console.log(connection.oracleServerVersion)
-        only works for oracle 12 or later
-                var s = JSON.stringify(user);
-                var b = Buffer.from(s, 'utf8');
-                console.log(s)*/
-        connection.execute("insert into crew values(:id,:username,:password,:email,:phone,:CREATE_TIME,:EXPIRE_TIME)",
-            values, {autoCommit: true}, function (err, result) {
-                if (err) {
-                    console.error(err.message);
-                    doRelease(connection);
-                    return;
-                }
-
-                connection.execute("select * from crew t", [], function (err, result) {
-                    if (err) {
-                        console.error(err.message);
-                        doRelease(connection);
-                        return;
-                    }
-                    console.log("aaaddddjjj")
-                    //    console.log(result.metaData);
-                    dbresult = JSON.stringify(result.rows.map((v) => {
-                        return result.metaData.reduce((p, key, i) => {
-                            p[key.name] = v[i];
-                            return p;
-                        }, {})
-                    }));
-                    //      console.log(dbresult)
-                    //       console.log("hhahaha");
-
-                    /*            console.log(JSON.stringify(result.rows.map((v)=>
-                                {
-                                    return result.metaData.reduce((p, key, i)=>
+                        /*            console.log(JSON.stringify(result.rows.map((v)=>
                                     {
-                                        p[key.name] = v[i];
-                                        return p;
-                                    }, {})
-                                })));*/
-                    doRelease(connection);
-                });
-            })
-    });
+                                        return result.metaData.reduce((p, key, i)=>
+                                        {
+                                            p[key.name] = v[i];
+                                            return p;
+                                        }, {})
+                                    })));*/
+                        doRelease(connection);
+                    });
+                })
+        });
+}
+
 app.get('/outageList', function (req, res) {
+    getConnection('');
     console.log("outage")
     console.log(dbresult);
     res.end(dbresult);

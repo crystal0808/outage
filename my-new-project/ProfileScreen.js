@@ -14,6 +14,8 @@ import {
     AppRegistry
 } from 'react-native';
 import {Button} from 'react-native-elements';
+const url = 'http://192.168.43.110:3000';
+//const url = 'http://172.20.10.6:3000';
 
 class ProfileScreen extends React.Component {
     static navigationOptions = {
@@ -23,6 +25,7 @@ class ProfileScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            OutageId:'',
             outageList: [{key: "Outage #: 123456, Location City: Duarte"},
                 {key: "Outage #: 987123, Location City: Duarte"},
                 {key: "Outage #: 123456, Location City: Pasadena"},
@@ -36,7 +39,7 @@ class ProfileScreen extends React.Component {
         const {navigate} = this.props.navigation;
         var outageList = [];
         outageList = this.state.outageList;
-        console.log(this.state.outageList)
+     //   console.log(this.state.outageList)
         return (
             // noinspection JSAnnotator
             //  this.state.outageList.map((item, i) => {
@@ -58,7 +61,7 @@ class ProfileScreen extends React.Component {
                             borderRadius: 5
                         }}
                         onPress={() =>
-                            navigate('Update', {name: 'Jane'})
+                            navigate('Update', {OutageId: item.key})
                         }
                     />}
                 />
@@ -69,7 +72,7 @@ class ProfileScreen extends React.Component {
     }
     componentDidMount() {
         console.log("didmont")
-        fetch('http://192.168.43.110:3000/outageList'//, {
+        fetch(url + '/outageList'//, {
             // method: 'GET',
             // headers: {
             //     Accept: 'application/json',
