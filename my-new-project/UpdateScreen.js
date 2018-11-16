@@ -1,4 +1,5 @@
 import React from 'react';
+import DropdownAlert from 'react-native-dropdownalert';
 import ProfileScreen from "./ProfileScreen";
 import {
     StyleSheet,
@@ -36,6 +37,7 @@ class UpdateScreen extends React.Component {
             Estimated_Restoration_Time:'',
             Reason:'',
             Crew_Status:'',
+            updateSuccess: false,
             outage: [],
     }
     console.log(this.props.navigation.getParam("OutageId", ''))
@@ -58,7 +60,23 @@ class UpdateScreen extends React.Component {
             redirect: 'follow', // manual, *follow, error
             referrer: 'no-referrer', // *client, no-referrer
         })
-            .then(response => response.json()) // parses response to JSON
+            .then((response)=>response.json())
+            .then ((responseJson) =>
+            {
+                console.log("this is itsss!")
+                this.dropdown.alertWithType('success', 'Outage updated successfully',"");
+                //  console.log(responseJson);
+                this.setState({
+                    updateSuccess: true,
+                }, function(){
+                    //          console.log(this.state.outageList)
+                });
+
+
+                //       resp = responseJson;
+            }).catch(function(err) {
+                console.log(err);
+            });
     }
 
 
@@ -110,6 +128,7 @@ render()
         //  this.state.outageList.map((item, i) => {
         //       console.log(item);
         <View style={ {flexWrap:'wrap',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
+
             <Text style={styles.item}>Outage Type: </Text>
             {/*<TextInput
                 style={{height: 40, width:150}}
@@ -196,6 +215,7 @@ render()
                 onPress={() =>{this.updateOutage()}
                 }
             />
+            <DropdownAlert ref={ref => this.dropdown = ref} />
         </View>
         //   })
 

@@ -43,8 +43,7 @@ class ProfileScreen extends React.Component {
             <View>
                 <FlatList
                     data={this.state.outageList}
-                    renderItem={({item}) => <Button
-                          key = {item.ID}
+                    renderItem={({item, i}) => <Button
                         title={"#" + item.ID + " " + item.CITY}
                         //color="#841584"
                         buttonStyle={{
@@ -60,6 +59,8 @@ class ProfileScreen extends React.Component {
                             navigate('Update', {OutageId: item.ID})
                         }
                     />}
+                    keyExtractor={(item, index) => index.toString()}
+
                 />
             </View>
             //   })
