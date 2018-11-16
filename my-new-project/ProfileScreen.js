@@ -14,6 +14,7 @@ import {
     AppRegistry
 } from 'react-native';
 import {Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const url = 'http://192.168.43.110:3000';
 //const url = 'http://172.20.10.6:3000';
 
@@ -44,16 +45,22 @@ class ProfileScreen extends React.Component {
                 <FlatList
                     data={this.state.outageList}
                     renderItem={({item, i}) => <Button
+                        icon={{
+                            name: 'home',
+                            size: 30,
+                            color: 'white'
+                        }}
                         title={"#" + item.ID + " " + item.CITY}
+                        fontSize = {24}
                         //color="#841584"
                         buttonStyle={{
                             //backgroundColor: "rgba(92, 99,216, 1)",
                             backgroundColor: 'skyblue',
                             //width: 300,
                             height: 80,
-                            borderColor: "black",
+                            borderColor: "transparent",
                             borderWidth: 5,
-                            borderRadius: 5
+                            borderRadius: 5,
                         }}
                         onPress={() =>
                             navigate('Update', {OutageId: item.ID})

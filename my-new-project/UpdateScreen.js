@@ -18,7 +18,7 @@ import {
 import {Button} from 'react-native-elements';
 const url = 'http://192.168.43.110:3000';
 //const url = 'http://172.20.10.6:3000';
-
+//613517643980-6u5fab849rfuqcumrpioifnufmmcontj.apps.googleusercontent.com
 class UpdateScreen extends React.Component {
     static navigationOptions = {
         title: 'Update Outage',
@@ -127,7 +127,7 @@ render()
         // noinspection JSAnnotator
         //  this.state.outageList.map((item, i) => {
         //       console.log(item);
-        <View style={ {flexWrap:'wrap',flexDirection:'row',backgroundColor:"darkgray",marginTop:20}}>
+        <View style={ {flexWrap:'wrap',flexDirection:'row',backgroundColor:"lightblue",marginTop:20}}>
 
             <Text style={styles.item}>Outage Type: </Text>
             {/*<TextInput
@@ -137,64 +137,65 @@ render()
             />*/}
             <Picker
                 selectedValue={this.state.OutageType}
-                style={{ height: 50, width: 150 }}
+                style={{ height: 50, width: 150,borderColor: 'gray', borderWidth: 1,transform: [
+                        { scaleX: 1.1 },
+                        { scaleY: 1.1 },
+                    ]}}
+
                 onValueChange={(itemValue, itemIndex) => this.setState({OutageType: itemValue})}>
                 <Picker.Item label="Planned" value="Planned" />
                 <Picker.Item label="Not Planned" value="NotPlanned" />
             </Picker>
             <Text style={styles.item}>Location City: </Text>
             <TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please enter the city"
+                style={{height: 40, width:150,borderColor: 'gray', borderWidth: 1, fontSize: 18}}
                 value = {this.state.City}
                 onChangeText={(text) => this.setState({City:text})}
             />
             <Text style={styles.item}>Location ZipCode: </Text>
             <TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please enter the Zip Code"
+                style={{height: 40, width:150,borderColor: 'gray', borderWidth: 1, fontSize: 18}}
                 value = {this.state.ZipCode}
                 onChangeText={(text) => this.setState({ZipCode:text})}
             />
             <Text style={styles.item}>Address: </Text>
             <TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please enter the Address"
+                style={{height: 40, width:150,borderColor: 'gray', borderWidth: 1, fontSize: 18}}
                 value = {this.state.Address}
                 onChangeText={(text) => this.setState({Address:text})}
             />
             <Text style={styles.item}>Customers Impacted: </Text>
             <TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please enter the Customers Impacted"
+                style={{height: 40, width:150,borderColor: 'gray', borderWidth: 1, fontSize: 18}}
                 value = {this.state.Customers_Impacted}
                 onChangeText={(text) => this.setState({Customers_Impacted:text})}
             />
             <Text style={styles.item}>Start Date Time: </Text>
             <TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please enter the Outage Start Date Time"
+                style={{height: 40, width:150,borderColor: 'gray', borderWidth: 1, fontSize: 18}}
                 value = {this.state.Start_Date_Time}
                 onChangeText={(text) => this.setState({Start_Date_Time:text})}
             />
             <Text style={styles.item}>Estimated Restoration Time: </Text>
             <TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please enter the Estimated Restoration Time"
+                style={{height: 40, width:150,borderColor: 'gray', borderWidth: 1, fontSize: 18}}
                 value = {this.state.Estimated_Restoration_Time}
                 onChangeText={(text) => this.setState({Estimated_Restoration_Time:text})}
             />
             <Text style={styles.item}>Reason: </Text>
             <TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please enter the Reason"
+                style={{height: 40, width:150,borderColor: 'gray', borderWidth: 1, fontSize: 18}}
                 value = {this.state.Reason}
                 onChangeText={(text) => this.setState({Reason:text})}
             />
             <Text style={styles.item}>Crew Status: </Text>
             <Picker
                 selectedValue={this.state.Crew_Status}
-                style={{ height: 50, width: 150 }}
+                style={{ height: 50, width: 150,borderColor: 'gray', borderWidth: 1, transform: [
+                        { scaleX: 1.1 },
+                        { scaleY: 1.1 },
+                    ]}}
+                textStyle={{fontSize:18}}
                 onValueChange={(itemValue, itemIndex) => this.setState({Crew_Status: itemValue})}>
                 <Picker.Item label="Started" value="Started" />
                 <Picker.Item label="Not Started" value="Not Started" />
@@ -202,13 +203,14 @@ render()
             <Button
                 //  key = {i}
                 title={"Update"}
-                //color="#841584"
+                color="#841584"
+                fontSize = {18}
                 buttonStyle={{
                     //backgroundColor: "rgba(92, 99,216, 1)",
-                    backgroundColor: 'blue',
+                    backgroundColor: 'orange',
                     //width: 300,
-                    height: 30,
-                    //borderColor: "black",
+                    height: 50,
+                    borderColor: "transparent",
                     borderWidth: 5,
                     borderRadius: 5
                 }}

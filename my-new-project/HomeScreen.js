@@ -22,7 +22,7 @@ class HomeScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <View style={styles.item}><Text style={styles.textStyle}>username：</Text>
+                <View style={styles.item}><Text style={styles.textStyle}>USERNAME：</Text>
                     <TextInput
                         ref="inputLoginName"
                         autoFocus={true}
@@ -34,7 +34,7 @@ class HomeScreen extends React.Component {
                         onChangeText={(input) => this.setState({username: input})}
                     ></TextInput>
                 </View>
-                <View style={styles.item}><Text style={styles.textStyle}>password：</Text>
+                <View style={styles.item}><Text style={styles.textStyle}>PASSWORD：</Text>
                     <TextInput
                         ref="inputLoginPwd"
                         underlineColorAndroid="gray"
@@ -55,7 +55,8 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: 150
     },
     item: {
         flexDirection: 'row',
