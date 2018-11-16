@@ -4,41 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 var app = express();
 var fs = require("fs");
 var util = require('util');
-
 const http = require('http');
 const hostname = '192.168.43.110';
 //const hostname = '172.20.10.6';
 const port = 3000;
 
-
-    /*
-    const server = http.createServer((req, res) => {
-        var json = JSON.stringify({
-            ID:1,
-            USERNAME:"mike",
-            PASSWORD:"password",
-            //EMAIL:"mike@sce.com",
-            //PHONE:1-800-111-2222,
-            CREATE_TIME:null,
-            EXPIRE_TIME:null
-        });
-        //res.statusCode = 200;
-        //res.setHeader('Content-Type', 'application/json');
-        res.writeHeader(200, {"Content-Type":"application/json"});
-        res.write(json);
-    });
-
-    server.listen(port, hostname, () => {
-        console.log(`服务器运行在 http://${hostname}:${port}/`);
-    });
-    */
 app.get('/', function (req, res) {
     res.send('Hello World');
 })
@@ -50,13 +25,13 @@ var server = app.listen(port, hostname, function () {
     console.log("应用实例，访问地址为 http://%s:%s", host1, port1)
 })
 app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 
-app.post('/', function(req, res) {
+app.post('/', function (req, res) {
     console.log("receive post");
     console.log(req.body);
-  //  console.log(req.body.name);
- //   console.log(req.body.tel);\
+    //  console.log(req.body.name);
+    //   console.log(req.body.tel);\
     var data = JSON.stringify({
         "user1": {
             "name": "mahesh",
@@ -79,12 +54,7 @@ app.post('/', function(req, res) {
     });
     res.send(data);
 });
-app.get('/listUsers', function (req, res) {
-    /*fs.readFile("c:/code/users.json", 'utf8', function (err, data) {
-        console.log( data );
-        res.end( data );
-    });*/
-    //res.send("hello wordsss")
+/*app.get('/listUsers', function (req, res) {
     var data = JSON.stringify({
         "user1": {
             "name": "mahesh",
@@ -107,7 +77,7 @@ app.get('/listUsers', function (req, res) {
     });
     console.log(data);
     res.end(data);
-})
+})*/
 // view engine setup
 /*app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -140,7 +110,7 @@ var oracledb = require('oracledb');
 
 // Get a non-pooled connection
 var dbresult = '';
-
+var queryResult = '';
 //添加的新用户数据
 var user = {
     "id": "6",
@@ -151,6 +121,7 @@ var user = {
     "CREATE_TIME": null,
     "EXPIRE_TIME": null
 }
+
 /* {
      "username": "coco",
      "password": "password4",
@@ -161,47 +132,21 @@ var user = {
      "EXPIRE_TIME": null
  }*/
 
-function getConnection(param) {
-    oracledb.getConnection(
+
+function getOutageList() {
+    console.log("get inszide")
+    var connection = oracledb.getConnection(
         {
             user: "system",
             password: "admin",
             connectString: "localhost:1521/xe"
-        },
-        function (err, connection) {
-            console.log("This is proof.");
-            if (err) {
-                console.error(err.message);
-                return;
-            }
-            let json = JSON.stringify(user);
-            /*
-                    connection.execute("insert into crew values(:ID,:USERNAME,:password,:EMAIL,:phone,:CREATE_TIME,:EXPIRE_TIME)",
-                        ['3', 'lily', '', '', '','',''], { autoCommit: true },function (err, result) {
-                        if (err) {
-                            console.error(err.message);
-                            doRelease(connection);
-                            return;
-                        }
-            */
-            var values = [];
+        }, function (err, connection) {
+        //    console.log("This is proof.");
+                if (err) {
+                    console.error(err.message);
+                    return;
+                }
 
-            values.push(user.id, user.username, user.password, user.email, user.phone, user.CREATE_TIME, user.EXPIRE_TIME)
-
-            console.log(values)
-
-            /*            console.log(connection.oracleServerVersion)
-            only works for oracle 12 or later
-                    var s = JSON.stringify(user);
-                    var b = Buffer.from(s, 'utf8');
-                    console.log(s)*/
-            connection.execute("insert into crew values(:id,:username,:password,:email,:phone,:CREATE_TIME,:EXPIRE_TIME)",
-                values, {autoCommit: true}, function (err, result) {
-                    if (err) {
-                        console.error(err.message);
-                        doRelease(connection);
-                        return;
-                    }
 
                     connection.execute("select * from outage t", [], function (err, result) {
                         if (err) {
@@ -209,36 +154,134 @@ function getConnection(param) {
                             doRelease(connection);
                             return;
                         }
-                        console.log("aaaddddjjj")
-                        console.log(result);
+                    //    console.log("aaaddddjjj")
+                   //     console.log(result);
                         dbresult = JSON.stringify(result.rows.map((v) => {
                             return result.metaData.reduce((p, key, i) => {
                                 p[key.name] = v[i];
                                 return p;
                             }, {})
                         }));
-                        console.log(dbresult)
-                        //       console.log("hhahaha");
-
-                        /*            console.log(JSON.stringify(result.rows.map((v)=>
-                                    {
-                                        return result.metaData.reduce((p, key, i)=>
-                                        {
-                                            p[key.name] = v[i];
-                                            return p;
-                                        }, {})
-                                    })));*/
+                  //      console.log(dbresult)
                         doRelease(connection);
                     });
-                })
-        });
+
+        }
+    );
 }
 
+
+function updateOutage(outageId) {
+    var connection = oracledb.getConnection(
+        {
+            user: "system",
+            password: "admin",
+            connectString: "localhost:1521/xe"
+        }, function (err, connection) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            //   let json = JSON.stringify(user);
+            //  var values = [];
+            //   values.push(user.id, user.username, user.password, user.email, user.phone, user.CREATE_TIME, user.EXPIRE_TIME)
+            //console.log(values)
+            //   connection.execute("select * from outage where ID=:id", { id:"987123"},{autoCommit: true}, function (err, result) {
+            connection.execute("UPDATE outage set CITY=:city where ID=:id", {
+                    city: "bewooo",
+                    id: "987123"
+                }, {autoCommit: true}, function (err, result) {
+
+                    if (err) {
+                        console.error(err.message);
+                        doRelease(connection);
+                        return;
+                    }
+                    if (result.rowsAffected === 1) {
+                        console.log("Update success")
+                        doRelease(connection);
+                        return;
+                    }
+                    doRelease(connection);
+                }
+            )
+        }
+    );
+}
+function queryOutage(outageId) {
+    var connection = oracledb.getConnection(
+        {
+            user: "system",
+            password: "admin",
+            connectString: "localhost:1521/xe"
+        }, function (err, connection) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+               connection.execute("select * from outage where ID=:id", { id:outageId},{autoCommit: true}, function (err, result) {
+                    if (err) {
+                        console.error(err.message);
+                        doRelease(connection);
+                        return;
+                    }
+                    queryResult = JSON.stringify(result.rows.map((v) => {
+                       return result.metaData.reduce((p, key, i) => {
+                           p[key.name] = v[i];
+                           return p;
+                       }, {})
+                   }));
+                    console.log(queryResult)
+                   res.end(queryResult);
+                    doRelease(connection);
+                //   console.log(queryResult)
+                   // return queryResult;
+                }
+            )
+        }
+    );
+}
+app.post('/outage/:id', function (req, res) {
+    console.log("receive post");
+    console.log(req.params.id);
+    //  console.log(req.body.name);
+    //   console.log(req.body.tel);\
+    var data = JSON.stringify({
+        "user1": {
+            "name": "mahesh",
+            "password": "password1",
+            "profession": "teacher",
+            "id": 1
+        },
+        "user2": {
+            "name": "suresh",
+            "password": "password2",
+            "profession": "librarian",
+            "id": 2
+        },
+        "user3": {
+            "name": "ramesh",
+            "password": "password3",
+            "profession": "clerk",
+            "id": 3
+        }
+    });
+    res.send(data);
+});
 app.get('/outageList', function (req, res) {
-    getConnection('');
+    getOutageList();
     console.log("outage")
     console.log(dbresult);
     res.end(dbresult);
+});
+app.get('/outage/:id', function (req, res) {
+    //updateOutage();
+    console.log(queryResult)
+    console.log(req.params.id)
+    queryOutage(req.params.id)
+
+    console.log(queryResult)
+
 });
 
 // Note: connections should always be released when not needed

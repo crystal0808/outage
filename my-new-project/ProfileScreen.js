@@ -14,8 +14,8 @@ import {
     AppRegistry
 } from 'react-native';
 import {Button} from 'react-native-elements';
-const url = 'http://192.168.43.110:3000';
-//const url = 'http://172.20.10.6:3000';
+//const url = 'http://192.168.43.110:3000';
+const url = 'http://172.20.10.6:3000';
 
 class ProfileScreen extends React.Component {
     static navigationOptions = {
