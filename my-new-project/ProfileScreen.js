@@ -15,8 +15,8 @@ import {
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-const url = 'http://192.168.43.110:3000';
-//const url = 'http://172.20.10.6:3000';
+//const url = 'http://192.168.43.110:3000';
+const url = 'http://172.20.10.6:3000';
 
 class ProfileScreen extends React.Component {
     static navigationOptions = {
@@ -88,21 +88,21 @@ class ProfileScreen extends React.Component {
             .then ((responseJson) =>
             {
                 console.log("this is it!")
-              //  console.log(responseJson);
+                //  console.log(responseJson);
                 this.setState({
                     outageList: responseJson,
                 }, function(){
-          //          console.log(this.state.outageList)
+                    //          console.log(this.state.outageList)
                 });
 
 
-        //       resp = responseJson;
+                //       resp = responseJson;
             }).catch(function(err) {
-            console.log(err);
-        });
-      //  console.log(this.state.test)
-      //  this.setState({test:resp})
-     //   console.log("test")
+                console.log(err);
+            });
+        //  console.log(this.state.test)
+        //  this.setState({test:resp})
+        //   console.log("test")
     }
 }
 
