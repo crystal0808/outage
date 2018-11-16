@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeScreen from "./HomeScreen";
+import ProfileScreen from "./ProfileScreen";
 import {
     StyleSheet,
     ScrollView,
@@ -26,7 +26,7 @@ class UpdateScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            OutageId : this.props.OutageId,
+            OutageId : '',
             OutageType:'',
             City:'',
             ZipCode:'',
@@ -66,15 +66,16 @@ class UpdateScreen extends React.Component {
         console.log("onclick of save update")
   //  console.log(this.state)
         var outage = {
-            "Address": this.state.Address,
-             "City": this.state.City,
-             "Crew_Status": this.state.Crew_Status,
-             "CustomersImpacted": this.state.CustomersImpacted,
-            "Estimated_Restoration_Time": this.state.Estimated_Restoration_Time,
-            "OutageType": this.state.OutageType,
-             "Reason": this.state.Reason,
-             "Start_Date_Time": this.state.Start_Date_Time,
-            "ZipCode": this.state.ZipCode,
+            "ADDRESS": this.state.Address,
+             "CITY": this.state.City,
+             "CREW_STATUS": this.state.Crew_Status,
+             "IMPACTED": this.state.CustomersImpacted,
+            "ESTIMATED_RES_TIME": this.state.Estimated_Restoration_Time,
+            "TYPE": this.state.OutageType,
+             "REASON": this.state.Reason,
+             "START_TIME": this.state.Start_Date_Time,
+            "ZIPCODE": this.state.ZipCode,
+            "ID":this.state.OutageId,
 
         }
     /*fetch('http://192.168.43.110:3000/'//, {
@@ -91,7 +92,7 @@ class UpdateScreen extends React.Component {
         }).catch(function(err) {
         console.log(err);
         });*/
-    this.postData(url, {outage: outage})
+    this.postData(url + '/outage/' + this.state.OutageId, {outage})
         .then(data => console.log(data)) // JSON from `response.json()` call
         .catch(error => console.error(error))
 
@@ -99,6 +100,7 @@ class UpdateScreen extends React.Component {
 
 render()
 {
+    console.log("render")
     const {navigate} = this.props.navigation;
     var outageList = [];
     outageList = this.state.outageList;
@@ -176,7 +178,7 @@ render()
                 style={{ height: 50, width: 150 }}
                 onValueChange={(itemValue, itemIndex) => this.setState({Crew_Status: itemValue})}>
                 <Picker.Item label="Started" value="Started" />
-                <Picker.Item label="Not Started" value="NotStarted" />
+                <Picker.Item label="Not Started" value="Not Started" />
             </Picker>
             <Button
                 //  key = {i}
@@ -199,7 +201,49 @@ render()
 
     );
 }
+    componentDidMount() {
+        console.log("didmont")
 
+        var id = this.props.navigation.getParam("OutageId", '')
+        console.log(id)
+        var resp = [];
+        return fetch(url + '/outage/'+ id//, {
+            // method: 'GET',
+            // headers: {
+            //     Accept: 'application/json',
+            //     'Content-Type': 'application/json',
+            // },
+            //}
+        ).then((response)=>response.json())
+            .then ((responseJson) =>
+            {
+                console.log("this is it!")
+                  console.log(responseJson[0]);
+                let outage = responseJson[0]
+                this.setState({
+                    OutageId : outage.ID,
+                    OutageType:outage.TYPE,
+                    City:outage.CITY,
+                    ZipCode:outage.ZIPCODE,
+                    Address:outage.ADDRESS,
+                    CustomersImpacted:outage.IMPACTED,
+                    Start_Date_Time:outage.START_TIME,
+                    Estimated_Restoration_Time:outage.ESTIMATED_RES_TIME,
+                    Reason:outage.REASON,
+                    Crew_Status:outage.CREW_STATUS,
+                }, function(){
+                   // console.log(this.state.outageList)
+                });
+
+
+                //       resp = responseJson;
+            }).catch(function(err) {
+                console.log(err);
+            });
+       // console.log(this.state.test)
+        //  this.setState({test:resp})
+     //   console.log("test")
+    }
 }
 
 const styles = StyleSheet.create({

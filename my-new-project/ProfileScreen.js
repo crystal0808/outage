@@ -14,8 +14,8 @@ import {
     AppRegistry
 } from 'react-native';
 import {Button} from 'react-native-elements';
-//const url = 'http://192.168.43.110:3000';
-const url = 'http://172.20.10.6:3000';
+const url = 'http://192.168.43.110:3000';
+//const url = 'http://172.20.10.6:3000';
 
 class ProfileScreen extends React.Component {
     static navigationOptions = {
@@ -26,12 +26,8 @@ class ProfileScreen extends React.Component {
         super(props);
         this.state = {
             OutageId:'',
-            outageList: [{key: "Outage #: 123456, Location City: Duarte"},
-                {key: "Outage #: 987123, Location City: Duarte"},
-                {key: "Outage #: 123456, Location City: Pasadena"},
-                {key: "Outage #: 81237, Location City: Covina"},
-                {key: "Outage #: 81237, Location City: Glendora"},
-                {key: "Outage #: 987123, Location City: Glendora"},],
+            outageList: [],
+            test:[],
         }
     }
 
@@ -39,7 +35,7 @@ class ProfileScreen extends React.Component {
         const {navigate} = this.props.navigation;
         var outageList = [];
         outageList = this.state.outageList;
-     //   console.log(this.state.outageList)
+        console.log(this.state.outageList)
         return (
             // noinspection JSAnnotator
             //  this.state.outageList.map((item, i) => {
@@ -48,8 +44,8 @@ class ProfileScreen extends React.Component {
                 <FlatList
                     data={this.state.outageList}
                     renderItem={({item}) => <Button
-                        //  key = {i}
-                        title={item.key}
+                          key = {item.ID}
+                        title={"#" + item.ID + " " + item.CITY}
                         //color="#841584"
                         buttonStyle={{
                             //backgroundColor: "rgba(92, 99,216, 1)",
@@ -61,7 +57,7 @@ class ProfileScreen extends React.Component {
                             borderRadius: 5
                         }}
                         onPress={() =>
-                            navigate('Update', {OutageId: item.key})
+                            navigate('Update', {OutageId: item.ID})
                         }
                     />}
                 />
@@ -72,7 +68,8 @@ class ProfileScreen extends React.Component {
     }
     componentDidMount() {
         console.log("didmont")
-        fetch(url + '/outageList'//, {
+        var resp = [];
+        return fetch(url + '/outageList'//, {
             // method: 'GET',
             // headers: {
             //     Accept: 'application/json',
@@ -83,10 +80,21 @@ class ProfileScreen extends React.Component {
             .then ((responseJson) =>
             {
                 console.log("this is it!")
-                console.log(responseJson);
+              //  console.log(responseJson);
+                this.setState({
+                    outageList: responseJson,
+                }, function(){
+          //          console.log(this.state.outageList)
+                });
+
+
+        //       resp = responseJson;
             }).catch(function(err) {
             console.log(err);
         });
+      //  console.log(this.state.test)
+      //  this.setState({test:resp})
+     //   console.log("test")
     }
 }
 
