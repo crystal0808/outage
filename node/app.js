@@ -133,7 +133,7 @@ var user = {
  }*/
 
 
-function getOutageList() {
+function getOutageList(res) {
     console.log("get inszide")
     var connection = oracledb.getConnection(
         {
@@ -164,6 +164,7 @@ function getOutageList() {
                         }));
                   //      console.log(dbresult)
                         doRelease(connection);
+                        res.end(dbresult);
                     });
 
         }
@@ -208,7 +209,7 @@ function updateOutage(outageId) {
         }
     );
 }
-function queryOutage(outageId) {
+function queryOutage(outageId, res) {
     var connection = oracledb.getConnection(
         {
             user: "system",
@@ -231,7 +232,7 @@ function queryOutage(outageId) {
                            return p;
                        }, {})
                    }));
-                    console.log(queryResult)
+                   // console.log(queryResult)
                    res.end(queryResult);
                     doRelease(connection);
                 //   console.log(queryResult)
@@ -269,19 +270,10 @@ app.post('/outage/:id', function (req, res) {
     res.send(data);
 });
 app.get('/outageList', function (req, res) {
-    getOutageList();
-    console.log("outage")
-    console.log(dbresult);
-    res.end(dbresult);
+    getOutageList(res);
 });
 app.get('/outage/:id', function (req, res) {
-    //updateOutage();
-    console.log(queryResult)
-    console.log(req.params.id)
-    queryOutage(req.params.id)
-
-    console.log(queryResult)
-
+    queryOutage(req.params.id, res)
 });
 
 // Note: connections should always be released when not needed
