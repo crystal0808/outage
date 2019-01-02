@@ -40,13 +40,10 @@ class UpdateScreen extends React.Component {
             updateSuccess: false,
             outage: [],
     }
-    console.log(this.props.navigation.getParam("OutageId", ''))
 }
 
     postData(url, data) {
         // Default options are marked with *
-        console.log("postData")
-        console.log(data)
         return fetch(url, {
             body: JSON.stringify(data), // must match 'Content-Type' header
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -63,26 +60,17 @@ class UpdateScreen extends React.Component {
             .then((response)=>response.json())
             .then ((responseJson) =>
             {
-                console.log("this is itsss!")
                 this.dropdown.alertWithType('success', 'Outage updated successfully',"");
-                //  console.log(responseJson);
                 this.setState({
                     updateSuccess: true,
                 }, function(){
-                    //          console.log(this.state.outageList)
                 });
-
-
-                //       resp = responseJson;
             }).catch(function(err) {
                 console.log(err);
             });
     }
 
-
     updateOutage() {
-        console.log("onclick of save update")
-  //  console.log(this.state)
         var outage = {
             "ADDRESS": this.state.Address,
              "CITY": this.state.City,
@@ -96,45 +84,20 @@ class UpdateScreen extends React.Component {
             "ID":this.state.OutageId,
 
         }
-    /*fetch('http://192.168.43.110:3000/'//, {
-       // method: 'GET',
-       // headers: {
-       //     Accept: 'application/json',
-       //     'Content-Type': 'application/json',
-       // },
-    //}
-    ).then((response)=>response.json())
-        .then ((responseJson) =>
-        {
-            console.log(responseJson);
-        }).catch(function(err) {
-        console.log(err);
-        });*/
     this.postData(url + '/outage/' + this.state.OutageId, {outage})
         .then(data => console.log(data)) // JSON from `response.json()` call
         .catch(error => console.error(error))
-
 }
 
 render()
 {
-    console.log("render")
     const {navigate} = this.props.navigation;
     var outageList = [];
     outageList = this.state.outageList;
-    console.log(this.state.outageList)
     return (
-        // noinspection JSAnnotator
-        //  this.state.outageList.map((item, i) => {
-        //       console.log(item);
         <View style={ {flexWrap:'wrap',flexDirection:'row',backgroundColor:"lightblue",marginTop:20}}>
 
             <Text style={styles.item}>Outage Type: </Text>
-            {/*<TextInput
-                style={{height: 40, width:150}}
-                placeholder="Please select the outage type!"
-                onChangeText={(text) => this.setState({text})}
-            />*/}
             <Picker
                 selectedValue={this.state.OutageType}
                 style={{ height: 50, width: 150,borderColor: 'gray', borderWidth: 1,transform: [
@@ -206,9 +169,7 @@ render()
                 color="#841584"
                 fontSize = {18}
                 buttonStyle={{
-                    //backgroundColor: "rgba(92, 99,216, 1)",
                     backgroundColor: 'orange',
-                    //width: 300,
                     height: 50,
                     borderColor: "transparent",
                     borderWidth: 5,
@@ -224,23 +185,12 @@ render()
     );
 }
     componentDidMount() {
-        console.log("didmont")
-
         var id = this.props.navigation.getParam("OutageId", '')
-        console.log(id)
         var resp = [];
-        return fetch(url + '/outage/'+ id//, {
-            // method: 'GET',
-            // headers: {
-            //     Accept: 'application/json',
-            //     'Content-Type': 'application/json',
-            // },
-            //}
+        return fetch(url + '/outage/'+ id
         ).then((response)=>response.json())
             .then ((responseJson) =>
             {
-                console.log("this is it!")
-                  console.log(responseJson[0]);
                 let outage = responseJson[0]
                 this.setState({
                     OutageId : outage.ID,
@@ -254,17 +204,10 @@ render()
                     Reason:outage.REASON,
                     Crew_Status:outage.CREW_STATUS,
                 }, function(){
-                   // console.log(this.state.outageList)
                 });
-
-
-                //       resp = responseJson;
             }).catch(function(err) {
                 console.log(err);
             });
-       // console.log(this.state.test)
-        //  this.setState({test:resp})
-     //   console.log("test")
     }
 }
 
